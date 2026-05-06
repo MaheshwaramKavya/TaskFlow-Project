@@ -13,9 +13,9 @@ GITHUB REPOSITORY:
 DEPLOYMENT PLATFORM:
   Railway (Backend + Database hosted on Railway)
 
-================================================================================
+
 PROJECT OVERVIEW
-================================================================================
+
 
 TaskFlow is a full-stack Team Task Management web application that enables
 teams to collaborate effectively through role-based access control. The system
@@ -26,9 +26,8 @@ Admins can create projects, assign tasks to team members, and monitor overall
 progress. Members can view their assigned tasks, complete them using a built-in
 Live Code Editor, and track their own progress in real time.
 
-================================================================================
+
 TECH STACK
-================================================================================
 
   Frontend   : React.js
   Backend    : Node.js with Express.js
@@ -36,9 +35,9 @@ TECH STACK
   Auth       : JWT (JSON Web Tokens) for secure authentication
   Deployment : Railway
 
-================================================================================
+
 KEY FEATURES
-================================================================================
+
 
 1. AUTHENTICATION
    - User Signup and Login
@@ -76,9 +75,9 @@ KEY FEATURES
 7. DASHBOARD
    - Overview of tasks, statuses, and overdue items
 
-================================================================================
+
 DATABASE SCHEMA (PostgreSQL)
-================================================================================
+
 
   Table: users
     - id         : Serial Primary Key
@@ -102,9 +101,9 @@ DATABASE SCHEMA (PostgreSQL)
     - project_id  : Integer (FK → projects.id)
     - due_date    : DATE
 
-================================================================================
+
 REST API ENDPOINTS
-================================================================================
+
 
   AUTH
     POST   /api/auth/register       - Register new user
@@ -125,9 +124,8 @@ REST API ENDPOINTS
     PUT    /api/tasks/:id           - Update task status
     DELETE /api/tasks/:id           - Delete task (Admin only)
 
-================================================================================
+
 HOW TO RUN LOCALLY
-================================================================================
 
 PREREQUISITES:
   - Node.js (v18+)
@@ -168,9 +166,9 @@ STEPS:
   8. Open browser at:
        http://localhost:3000
 
-================================================================================
+
 PROJECT STRUCTURE
-================================================================================
+
 
   TaskFlow-Project/
   ├── frontend/
@@ -189,9 +187,8 @@ PROJECT STRUCTURE
   │   └── package.json
   └── README.txt
 
-================================================================================
+
 VALIDATIONS & SECURITY
-================================================================================
 
   - JWT token required for all protected routes
   - Role-based middleware restricts Admin-only actions
