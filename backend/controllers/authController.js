@@ -19,22 +19,24 @@ exports.signup = async (req, res) => {
     if (exists.rows.length) return res.status(409).json({ message: 'Email already registered' });
 
     const hash = await bcrypt.hash(password, 12);
+    const countResult = await pool.query('SELECT COUNT(*) FROM users');
+    const userCount = parseInt(countResult.rows[0].count);
+    const role = userCount === 0 ? 'admin' : 'member';
+
     const result = await pool.query(
       'INSERT INTO users (name, email, password_hash, role) VALUES ($1,$2,$3,$4) RETURNING id,name,email,role',
-      [name.trim(), email.toLowerCase().trim(), hash, 'member']
+      [name.trim(), email.toLowerCase().trim(), hash, role]
     );
 
     const user = result.rows[0];
 
-    // Send welcome email
     try {
       await sendWelcomeEmail({
         to: user.email,
-        userName: user.name.split(' ')[0], // First name only
+        userName: user.name.split(' ')[0],
       });
     } catch (emailErr) {
       console.error('Failed to send welcome email:', emailErr.message);
-      // Don't fail signup if email fails
     }
 
     res.status(201).json({ user, token: signToken(user) });
